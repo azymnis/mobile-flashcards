@@ -1,31 +1,9 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { white, gray } from '../utils/colors'
-
-const MockData = {
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-}
+import { connect } from 'react-redux'
+import { getDecks } from '../utils/api'
+import { receiveDecks } from '../actions'
 
 function DeckItem({ item, onPress }) {
   return (
@@ -36,15 +14,11 @@ function DeckItem({ item, onPress }) {
   )
 }
 
-export default class DeckList extends React.Component {
-  state = {
-    data: []
-  }
-
+class DeckList extends React.Component {
   componentDidMount() {
-    this.setState({
-      data: Object.values(MockData)
-    })
+    const { dispatch } = this.props
+    getDecks()
+      .then( decks => dispatch(receiveDecks(decks)) )
   }
 
   _onPress = () => {
@@ -62,7 +36,7 @@ export default class DeckList extends React.Component {
   render() {
     return (<FlatList
       contentContainerStyle={styles.container}
-      data={this.state.data}
+      data={this.props.decks}
       renderItem={this._renderItem}
       keyExtractor={this._keyExtractor}
     />)
@@ -94,4 +68,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black'
   }
 })
+
+function mapStateToProps (state) {
+  return {
+    decks: Object.values(state.decks)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(DeckList)
 
