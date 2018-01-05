@@ -7,15 +7,15 @@ const MOBILE_FLASHCARDS_KEY = "mobile-flashcards:data"
  */
 export function getDecks() {
   return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
+    .then(JSON.parse)
 }
 
 /**
  * Take in a single title argument and return the deck associated with that id.
  */
 export function getDeck(title) {
-  return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
-    .then(results => {
-      const data = JSON.parse(results)
+  return getDecks()
+    .then(data => {
       return data[title]
     })
 }
@@ -37,9 +37,8 @@ export function saveDeckTitle(title) {
  * the list of questions for the deck with the associated title.
  */
 export function addCardToDeck(title, card) {
-  return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
-    .then(results => {
-      const data = JSON.parse(results)
+  return getDecks()
+    .then(data => {
       data[title].questions.push(card)
       AsyncStorage.setItem(MOBILE_FLASHCARDS_KEY, JSON.stringify(data))
     })
