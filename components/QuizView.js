@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
-import { white, red, green, blue } from '../utils/colors'
+import { white, red, green, blue, gray } from '../utils/colors'
 
 class QuizView extends React.Component {
   static navigationOptions = () => {
@@ -51,7 +51,7 @@ class QuizView extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.indexCounter}>{index + 1} / {totalQuestions}</Text>
+        <Text style={styles.indexCounter}>Question {index + 1} / {totalQuestions}</Text>
         <Text style={styles.questionText}>{showAnswer ? answer : question}</Text>
         <TouchableOpacity onPress={this._toggleShowAnswer}>
           <Text style={styles.answerToggle}>{showAnswer ? "QUESTION" : "ANSWER"}</Text>
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     padding: 10,
+    color: gray,
   },
   questionText: {
     textAlign: 'center',

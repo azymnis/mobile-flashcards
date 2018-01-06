@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { white, gray } from '../utils/colors'
+import { white, gray, black } from '../utils/colors'
 import { connect } from 'react-redux'
 import { getDecks, deleteDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     minHeight: 150,
     justifyContent: 'center',
     borderBottomWidth: 2,
-    borderBottomColor: 'black'
+    borderBottomColor: black
   }
 })
 

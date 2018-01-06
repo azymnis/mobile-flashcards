@@ -58,12 +58,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   textLabel: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 30,
+    marginTop: 45,
+    marginLeft: 30,
+    marginRight: 30,
   },
   textInput: {
     height: 40,
@@ -71,7 +74,8 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 10,
     borderColor: black,
-    borderWidth: 1,
+    borderWidth: 2,
+    borderRadius: 7,
   },
 })
 
