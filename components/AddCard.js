@@ -33,7 +33,6 @@ class AddCard extends React.Component {
           this.setState({question: "", answer: ""})
           navigation.goBack()
         })
-
     }
   }
 
