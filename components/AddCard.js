@@ -4,6 +4,7 @@ import { white, green, black } from '../utils/colors'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../utils/api'
 import { modifyDeck } from '../actions'
+import TextInputWithLabel from './TextInputWithLabel'
 
 class AddCard extends React.Component {
   static navigationOptions = () => {
@@ -39,16 +40,14 @@ class AddCard extends React.Component {
   render() {
     return (
       <View style={styles.form}>
-        <Text style={styles.textLabel}>What is the question?</Text>
-        <TextInput
+        <TextInputWithLabel
+          labelText="What is the question?"
           onChangeText={(question) => this.setState({question})}
-          style={styles.textInput}
           value={this.state.question}
         />
-        <Text style={styles.textLabel}>What is the answer?</Text>
-        <TextInput
+        <TextInputWithLabel
+          labelText="What is the answer?"
           onChangeText={(answer) => this.setState({answer})}
-          style={styles.textInput}
           value={this.state.answer}
         />
         <Button
@@ -68,21 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-  textLabel: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 30,
-    marginTop: 45,
-  },
-  textInput: {
-    height: 40,
-    width: 300,
-    margin: 20,
-    padding: 10,
-    borderColor: black,
-    borderWidth: 2,
-    borderRadius: 7,
   },
 })
 

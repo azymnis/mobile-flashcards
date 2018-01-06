@@ -36,7 +36,7 @@ class QuizView extends React.Component {
 
     if (index === totalQuestions) {
       return (
-        <View style={styles.finalContainer}>
+        <View style={styles.container}>
           <Text style={styles.finalText}>
           { totalQuestions === correct ?
             `Congratulations! You answered all ${totalQuestions} questions correctly! 🎉` :
@@ -108,12 +108,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     padding: 5,
-  },
-  finalContainer: {
-    flex: 1,
-    backgroundColor: white,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   finalText: {
     textAlign: 'center',

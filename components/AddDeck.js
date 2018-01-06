@@ -4,6 +4,7 @@ import { white, black, green } from '../utils/colors'
 import { connect } from 'react-redux'
 import { saveDeckTitle } from '../utils/api'
 import { modifyDeck } from '../actions'
+import TextInputWithLabel from './TextInputWithLabel'
 
 class AddDeck extends React.Component {
   static navigationOptions = () => {
@@ -36,11 +37,10 @@ class AddDeck extends React.Component {
   render() {
     return (
       <View style={styles.form}>
-        <Text style={styles.textLabel}>What is the title of your new deck?</Text>
-        <TextInput
-          onChangeText={(title) => this.setState({title})}
-          style={styles.textInput}
+        <TextInputWithLabel
+          labelText="What is the title of your new deck?"
           value={this.state.title}
+          onChangeText={(title) => this.setState({title})}
         />
         <Button
           onPress={this._onPress}
@@ -59,23 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-  textLabel: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 30,
-    marginTop: 45,
-    marginLeft: 30,
-    marginRight: 30,
-  },
-  textInput: {
-    height: 40,
-    width: 300,
-    margin: 20,
-    padding: 10,
-    borderColor: black,
-    borderWidth: 2,
-    borderRadius: 7,
   },
 })
 
