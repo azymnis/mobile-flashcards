@@ -11,6 +11,13 @@ class DeckDetail extends React.Component {
     }
   }
 
+  _onPressAddCard = () => {
+    this.props.navigation.navigate(
+      'AddCard',
+      { title: this.props.title }
+    )
+  }
+
   render() {
     const { deck, title } = this.props
 
@@ -21,7 +28,7 @@ class DeckDetail extends React.Component {
           <Text style={styles.cardNumText}>{deck.questions.length} cards</Text>
         </View>
         <Button
-          onPress={() => console.log("Pressed add card")}
+          onPress={this._onPressAddCard}
           title="Add Card"
           color={green}
           accessibilityLabel="Add a card to an existing deck"

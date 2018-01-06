@@ -2,6 +2,7 @@ import React from 'react'
 import { StatusBar, View } from 'react-native'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
+import AddCard from './components/AddCard'
 import DeckDetail from './components/DeckDetail'
 import { Constants } from 'expo'
 import { createStore } from 'redux'
@@ -41,6 +42,9 @@ const MainNavigator = StackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail
+  },
+  AddCard: {
+    screen: AddCard
   }
 })
 
