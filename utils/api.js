@@ -3,6 +3,13 @@ import { AsyncStorage } from 'react-native'
 const MOBILE_FLASHCARDS_KEY = "mobile-flashcards:data"
 
 /**
+ * Call this to clear all decks.
+ */
+export function deleteDecks() {
+  return AsyncStorage.removeItem(MOBILE_FLASHCARDS_KEY)
+}
+
+/**
  * Return all of the decks along with their titles, questions, and answers.
  */
 export function getDecks() {

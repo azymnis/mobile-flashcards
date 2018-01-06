@@ -2,7 +2,7 @@ import React from 'react'
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { white, gray } from '../utils/colors'
 import { connect } from 'react-redux'
-import { getDecks } from '../utils/api'
+import { getDecks, deleteDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 import { AppLoading} from 'expo'
 
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
   titleText: {
     textAlign: 'center',
     fontWeight: 'bold',
+    margin: 20,
     fontSize: 28,
   },
   cardNumText: {
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   listItem: {
-    height: 150,
+    minHeight: 150,
     justifyContent: 'center',
     borderBottomWidth: 2,
     borderBottomColor: 'black'

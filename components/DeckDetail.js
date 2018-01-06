@@ -41,12 +41,12 @@ class DeckDetail extends React.Component {
           accessibilityLabel="Add a card to an existing deck"
         />
         <View style={{height: 20}}/>
-        <Button
+        {deck.questions.length > 0 && ( <Button
           onPress={this._onPressStartQuiz}
           title="Start Quiz"
           color={blue}
           accessibilityLabel="Start a quiz for a given deck of cards"
-        />
+        />)}
       </View>
     )
   }
@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
   titleText: {
     textAlign: 'center',
     fontWeight: 'bold',
+    marginLeft: 20,
+    marginRight: 20,
     fontSize: 28,
   },
   cardNumText: {
