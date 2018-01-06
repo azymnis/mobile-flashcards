@@ -4,6 +4,7 @@ import { white, gray } from '../utils/colors'
 import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
+import { AppLoading} from 'expo'
 
 function DeckItem({ item, onPress }) {
   return (
@@ -15,18 +16,32 @@ function DeckItem({ item, onPress }) {
 }
 
 class DeckList extends React.Component {
+  static navigationOptions = () => {
+    return {
+      title: "Deck List"
+    }
+  }
+
+  state = {
+    ready: false,
+  }
+
   componentDidMount() {
     const { dispatch } = this.props
     getDecks()
       .then( decks => dispatch(receiveDecks(decks)) )
+      .then(() => this.setState(() => ({ready: true})))
   }
 
-  _onPress = () => {
-    console.log("pressed")
+  _onPress = (title) => {
+    this.props.navigation.navigate(
+      'DeckDetail',
+      { title }
+    )
   }
 
   _renderItem = (el) => {
-    return (<DeckItem item={el.item} onPress={this._onPress} />)
+    return (<DeckItem item={el.item} onPress={() => this._onPress(el.item.title)} />)
   }
 
   _keyExtractor(el) {
@@ -34,6 +49,11 @@ class DeckList extends React.Component {
   }
 
   render() {
+    const { ready } = this.state
+    if (ready === false) {
+      return <AppLoading />
+    }
+
     return (
       this.props.decks.length == 0 ?
       <View style={styles.emptyContainer}>

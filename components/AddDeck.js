@@ -6,6 +6,12 @@ import { saveDeckTitle } from '../utils/api'
 import { modifyDeck } from '../actions'
 
 class AddDeck extends React.Component {
+  static navigationOptions = () => {
+    return {
+      title: "Add New Deck"
+    }
+  }
+
   state = {
     title: ""
   }

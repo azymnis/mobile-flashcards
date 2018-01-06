@@ -2,6 +2,7 @@ import React from 'react'
 import { StatusBar, View } from 'react-native'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
+import DeckDetail from './components/DeckDetail'
 import { Constants } from 'expo'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -34,13 +35,22 @@ const Tabs = TabNavigator({
   }
 })
 
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  DeckDetail: {
+    screen: DeckDetail
+  }
+})
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
           <CustomStatusBar />
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider>
     )
