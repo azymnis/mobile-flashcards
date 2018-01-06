@@ -2,51 +2,6 @@ import { AsyncStorage } from 'react-native'
 
 const MOBILE_FLASHCARDS_KEY = "mobile-flashcards:data"
 
-const MockData = {
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  },
-  Fubar: {
-    title: 'Fubar',
-    questions: []
-  },
-  Fubar2: {
-    title: 'Fubar2',
-    questions: []
-  },
-  Fubar3: {
-    title: 'Fubar3',
-    questions: []
-  },
-  Fubar4: {
-    title: 'Fubar4',
-    questions: []
-  },
-  Fubar5: {
-    title: 'Fubar5',
-    questions: []
-  },
-}
-
 /**
  * Return all of the decks along with their titles, questions, and answers.
  */
@@ -54,10 +9,6 @@ export function getDecks() {
   return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
     .then(JSON.parse)
 }
-
-// export function getDecks() {
-//   return Promise.resolve(MockData)
-// }
 
 /**
  * Take in a single title argument and return the deck associated with that id.
