@@ -39,7 +39,7 @@ class QuizView extends React.Component {
         <View style={styles.container}>
           <Text style={styles.finalText}>
           { totalQuestions === correct ?
-            `Congratulations! You answered all ${totalQuestions} questions correctly! 🎉` :
+            `Congratulations! You answered all ${totalQuestions} questions correctly! 🎉🎉🎉` :
             `You guessed ${correct} out of ${totalQuestions} questions correctly`
           }
           </Text>
