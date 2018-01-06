@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     backgroundColor: white,
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   textLabel: {
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
+    width: 300,
     margin: 20,
     padding: 10,
     borderColor: black,
