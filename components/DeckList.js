@@ -34,12 +34,18 @@ class DeckList extends React.Component {
   }
 
   render() {
-    return (<FlatList
-      contentContainerStyle={styles.container}
-      data={this.props.decks}
-      renderItem={this._renderItem}
-      keyExtractor={this._keyExtractor}
-    />)
+    return (
+      this.props.decks.length == 0 ?
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>There are no decks to show!</Text>
+        <Text style={styles.emptyText}>Please create a new one.</Text>
+      </View>  :
+      <FlatList
+        contentContainerStyle={styles.container}
+        data={this.props.decks}
+        renderItem={this._renderItem}
+        keyExtractor={this._keyExtractor}
+      />)
   }
 }
 
@@ -49,6 +55,17 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     alignItems: 'stretch',
     justifyContent: 'flex-start',
+  },
+  emptyContainer: {
+    flex: 1,
+    backgroundColor: white,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyText: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   titleText: {
     textAlign: 'center',
@@ -69,7 +86,7 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     decks: Object.values(state.decks)
   }
@@ -78,4 +95,3 @@ function mapStateToProps (state) {
 export default connect(
   mapStateToProps,
 )(DeckList)
-

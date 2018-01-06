@@ -50,14 +50,14 @@ const MockData = {
 /**
  * Return all of the decks along with their titles, questions, and answers.
  */
-// export function getDecks() {
-//   return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
-//     .then(JSON.parse)
-// }
-
 export function getDecks() {
-  return Promise.resolve(MockData)
+  return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
+    .then(JSON.parse)
 }
+
+// export function getDecks() {
+//   return Promise.resolve(MockData)
+// }
 
 /**
  * Take in a single title argument and return the deck associated with that id.
