@@ -30,7 +30,7 @@ class DeckList extends React.Component {
     const { dispatch } = this.props
     getDecks()
       .then( decks => dispatch(receiveDecks(decks)) )
-      .then(() => this.setState(() => ({ready: true})))
+      .then(() => this.setState({ready: true}))
   }
 
   _onPress = (title) => {

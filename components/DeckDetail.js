@@ -18,6 +18,13 @@ class DeckDetail extends React.Component {
     )
   }
 
+  _onPressStartQuiz = () => {
+    this.props.navigation.navigate(
+      'QuizView',
+      { title: this.props.title }
+    )
+  }
+
   render() {
     const { deck, title } = this.props
 
@@ -35,7 +42,7 @@ class DeckDetail extends React.Component {
         />
         <View style={{height: 20}}/>
         <Button
-          onPress={() => console.log("Pressed start quiz")}
+          onPress={this._onPressStartQuiz}
           title="Start Quiz"
           color={blue}
           accessibilityLabel="Start a quiz for a given deck of cards"

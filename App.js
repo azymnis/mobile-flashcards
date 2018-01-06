@@ -4,6 +4,7 @@ import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import DeckDetail from './components/DeckDetail'
+import QuizView from './components/QuizView'
 import { Constants } from 'expo'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -45,6 +46,9 @@ const MainNavigator = StackNavigator({
   },
   AddCard: {
     screen: AddCard
+  },
+  QuizView: {
+    screen: QuizView
   }
 })
 
