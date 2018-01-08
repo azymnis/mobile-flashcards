@@ -25,14 +25,14 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function TextInputWithLabel({onChangeText, value, labelText}) {
+export default function TextInputWithLabel({labelText, ...props}) {
   return(
     <View style={styles.container}>
       <Text style={styles.textLabel}>{labelText}</Text>
       <TextInput
-        onChangeText={onChangeText}
         style={styles.textInput}
-        value={value}
+        multiline
+        {...props}
       />
     </View>
   )
