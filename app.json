@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "sdkVersion": "23.0.0",
+    "name": "Mobile Flashcards",
+    "description": "An app to create and run flashcard quizes",
+    "slug": "mobileflashcards",
+    "version": "1.0",
+    "ios": {
+      "bundleIdentifier": "org.zymnis.mobileflashcards.exp"
+    },
+    "android": {
+      "package": "org.zymnis.mobileflashcards.exp"
+    }
   }
 }
