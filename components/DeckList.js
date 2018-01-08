@@ -60,12 +60,13 @@ class DeckList extends React.Component {
         <Text style={styles.emptyText}>There are no decks to show!</Text>
         <Text style={styles.emptyText}>Please create a new one.</Text>
       </View>  :
-      <FlatList
-        contentContainerStyle={styles.container}
-        data={this.props.decks}
-        renderItem={this._renderItem}
-        keyExtractor={this._keyExtractor}
-      />)
+      <View style={styles.container}>
+        <FlatList
+          data={this.props.decks}
+          renderItem={this._renderItem}
+          keyExtractor={this._keyExtractor}
+        />
+      </View>)
   }
 }
 

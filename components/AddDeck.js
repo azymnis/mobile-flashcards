@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { Keyboard, StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import { white, black, green } from '../utils/colors'
 import { connect } from 'react-redux'
 import { saveDeckTitle } from '../utils/api'
@@ -21,8 +21,10 @@ class AddDeck extends React.Component {
     const { deckTitles, navigation, dispatch } = this.props
     const { title } = this.state
     if (title === "") {
+      Keyboard.dismiss()
       alert("A deck cannot have an empty title")
     } else if (deckTitles.has(title)) {
+      Keyboard.dismiss()
       alert("A deck with this title already exists")
     } else {
       saveDeckTitle(title)
@@ -30,6 +32,7 @@ class AddDeck extends React.Component {
         .then( () => {
           this.setState({title: ""})
           navigation.navigate("DeckList")
+          Keyboard.dismiss()
         })
     }
   }

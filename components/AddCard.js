@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { Keyboard, StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import { white, green, black } from '../utils/colors'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../utils/api'
@@ -23,6 +23,7 @@ class AddCard extends React.Component {
     const { title } = navigation.state.params
     const { question, answer } = this.state
     if (question === "" || answer === "") {
+      Keyboard.dismiss()
       alert("Question and answer cannot be empty")
     } else {
       const card = { question, answer }
@@ -33,6 +34,7 @@ class AddCard extends React.Component {
         .then( () => {
           this.setState({question: "", answer: ""})
           navigation.goBack()
+          Keyboard.dismiss()
         })
     }
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StatusBar, View } from 'react-native'
+import { Platform, StatusBar, View } from 'react-native'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
@@ -25,14 +25,14 @@ const Tabs = TabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: () => <FontAwesome name='stack-overflow' size={25} />
+      tabBarIcon: ({ tintColor }) => <FontAwesome color={tintColor} name='stack-overflow' size={30} />
     },
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck',
-      tabBarIcon: () => <FontAwesome name='plus-square' size={25} />
+      tabBarIcon: ({ tintColor }) => <FontAwesome color={tintColor} name='plus-square' size={30} />
     },
   }
 })
@@ -57,7 +57,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
-          <CustomStatusBar />
+          { Platform.OS !== 'ios' && (<CustomStatusBar />) }
           <MainNavigator />
         </View>
       </Provider>
