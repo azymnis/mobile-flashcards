@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
 import { white, red, green, blue, gray } from '../utils/colors'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 class QuizView extends React.Component {
   static navigationOptions = () => {
@@ -40,6 +41,18 @@ class QuizView extends React.Component {
   _goBack = () => {
     const { navigation } = this.props
     navigation.goBack()
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { deck } = nextProps
+    const { index } = nextState
+    const totalQuestions = deck.questions.length
+
+    // If this is the last index then reset the notification
+    if (index === totalQuestions) {
+      clearLocalNotification()
+        .then(setLocalNotification)
+    }
   }
 
   render() {
