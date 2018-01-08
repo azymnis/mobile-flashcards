@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
 import { white, red, green, blue, gray } from '../utils/colors'
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
@@ -63,6 +63,7 @@ class QuizView extends React.Component {
     if (index === totalQuestions) {
       return (
         <View style={styles.container}>
+
           <Text style={styles.finalText}>
           { totalQuestions === correct ?
             `Congratulations! You answered all ${totalQuestions} questions correctly! 🎉🎉🎉` :
@@ -93,27 +94,29 @@ class QuizView extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.indexCounter}>Question {index + 1} / {totalQuestions}</Text>
-        <Text style={styles.questionText}>{showAnswer ? answer : question}</Text>
-        <TouchableOpacity onPress={this._toggleShowAnswer}>
-          <Text style={styles.answerToggle}>{showAnswer ? "QUESTION" : "ANSWER"}</Text>
-        </TouchableOpacity>
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => this._submitAnwer(true)}
-            title="Correct"
-            color={green}
-            accessibilityLabel="Answer is correct"
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => this._submitAnwer(false)}
-            title="Incorrect"
-            color={red}
-            accessibilityLabel="Answer is Incorrect"
-          />
-        </View>
+        <ScrollView>
+          <Text style={styles.indexCounter}>Question {index + 1} / {totalQuestions}</Text>
+          <Text style={styles.questionText}>{showAnswer ? answer : question}</Text>
+          <TouchableOpacity onPress={this._toggleShowAnswer}>
+            <Text style={styles.answerToggle}>{showAnswer ? "QUESTION" : "ANSWER"}</Text>
+          </TouchableOpacity>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={() => this._submitAnwer(true)}
+              title="Correct"
+              color={green}
+              accessibilityLabel="Answer is correct"
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={() => this._submitAnwer(false)}
+              title="Incorrect"
+              color={red}
+              accessibilityLabel="Answer is Incorrect"
+            />
+          </View>
+        </ScrollView>
       </View>
     )
   }

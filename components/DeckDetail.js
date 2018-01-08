@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Button } from 'react-native'
 import { white, gray, green, blue } from '../utils/colors'
 import { connect } from 'react-redux'
 
@@ -30,23 +30,25 @@ class DeckDetail extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.textBox}>
-          <Text style={styles.titleText}>{title}</Text>
-          <Text style={styles.cardNumText}>{deck.questions.length} cards</Text>
-        </View>
-        <Button
-          onPress={this._onPressAddCard}
-          title="Add Card"
-          color={green}
-          accessibilityLabel="Add a card to an existing deck"
-        />
-        <View style={{height: 20}}/>
-        {deck.questions.length > 0 && ( <Button
-          onPress={this._onPressStartQuiz}
-          title="Start Quiz"
-          color={blue}
-          accessibilityLabel="Start a quiz for a given deck of cards"
-        />)}
+        <ScrollView>
+          <View style={styles.textBox}>
+            <Text style={styles.titleText}>{title}</Text>
+            <Text style={styles.cardNumText}>{deck.questions.length} cards</Text>
+          </View>
+          <Button
+            onPress={this._onPressAddCard}
+            title="Add Card"
+            color={green}
+            accessibilityLabel="Add a card to an existing deck"
+          />
+          <View style={{height: 20}}/>
+          {deck.questions.length > 0 && ( <Button
+            onPress={this._onPressStartQuiz}
+            title="Start Quiz"
+            color={blue}
+            accessibilityLabel="Start a quiz for a given deck of cards"
+          />)}
+        </ScrollView>
       </View>
     )
   }
@@ -60,7 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   textBox: {
-    height: 200,
+    marginTop: 20,
+    marginBottom: 20,
     justifyContent: 'center',
   },
   titleText: {
