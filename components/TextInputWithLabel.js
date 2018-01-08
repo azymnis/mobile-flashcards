@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 45,
+    marginTop: 30,
   },
   textInput: {
     height: 40,

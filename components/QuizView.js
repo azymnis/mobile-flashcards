@@ -29,6 +29,19 @@ class QuizView extends React.Component {
     this.setState({ showAnswer: !this.state.showAnswer })
   }
 
+  _restartQuiz = () => {
+    this.setState({
+      index: 0,
+      correct: 0,
+      showAnswer: false
+    })
+  }
+
+  _goBack = () => {
+    const { navigation } = this.props
+    navigation.goBack()
+  }
+
   render() {
     const { deck } = this.props
     const { index, correct, showAnswer } = this.state
@@ -43,6 +56,22 @@ class QuizView extends React.Component {
             `You guessed ${correct} out of ${totalQuestions} questions correctly`
           }
           </Text>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={this._goBack}
+              title="Go Back"
+              color={blue}
+              accessibilityLabel="Go back to deck detail view"
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={this._restartQuiz}
+              title="Restart Quiz"
+              color={blue}
+              accessibilityLabel="Run through the same quiz again"
+            />
+          </View>
         </View>
       )
     }

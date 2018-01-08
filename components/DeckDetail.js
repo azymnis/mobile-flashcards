@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   textBox: {
-    height: 300,
+    height: 200,
     justifyContent: 'center',
   },
   titleText: {
