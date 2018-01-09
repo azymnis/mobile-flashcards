@@ -55,39 +55,42 @@ class QuizView extends React.Component {
     }
   }
 
+  congratsView(totalQuestions, correct) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.finalText}>
+        { totalQuestions === correct ?
+          `Congratulations! You answered all ${totalQuestions} questions correctly! 🎉🎉🎉` :
+          `You guessed ${correct} out of ${totalQuestions} questions correctly`
+        }
+        </Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._goBack}
+            title="Go Back"
+            color={blue}
+            accessibilityLabel="Go back to deck detail view"
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._restartQuiz}
+            title="Restart Quiz"
+            color={blue}
+            accessibilityLabel="Run through the same quiz again"
+          />
+        </View>
+      </View>
+    )
+  }
+
   render() {
     const { deck } = this.props
     const { index, correct, showAnswer } = this.state
     const totalQuestions = deck.questions.length
 
     if (index === totalQuestions) {
-      return (
-        <View style={styles.container}>
-
-          <Text style={styles.finalText}>
-          { totalQuestions === correct ?
-            `Congratulations! You answered all ${totalQuestions} questions correctly! 🎉🎉🎉` :
-            `You guessed ${correct} out of ${totalQuestions} questions correctly`
-          }
-          </Text>
-          <View style={styles.buttonContainer}>
-            <Button
-              onPress={this._goBack}
-              title="Go Back"
-              color={blue}
-              accessibilityLabel="Go back to deck detail view"
-            />
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              onPress={this._restartQuiz}
-              title="Restart Quiz"
-              color={blue}
-              accessibilityLabel="Run through the same quiz again"
-            />
-          </View>
-        </View>
-      )
+      return this.congratsView(totalQuestions, correct)
     }
 
     const { question, answer } = deck.questions[index]
