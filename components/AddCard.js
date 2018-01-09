@@ -1,5 +1,5 @@
 import React from 'react'
-import { Keyboard, StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { Keyboard, StyleSheet, Text, TextInput, KeyboardAvoidingView, Button } from 'react-native'
 import { white, green, black } from '../utils/colors'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../utils/api'
@@ -41,7 +41,7 @@ class AddCard extends React.Component {
 
   render() {
     return (
-      <View style={styles.form}>
+      <KeyboardAvoidingView style={styles.form} behavior="padding">
         <TextInputWithLabel
           labelText="What is the question?"
           onChangeText={(question) => this.setState({question})}
@@ -58,7 +58,7 @@ class AddCard extends React.Component {
           color={green}
           accessibilityLabel="Add a card to an existing deck"
         />
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }

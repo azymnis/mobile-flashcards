@@ -27,9 +27,9 @@ class DeckList extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
+    const { receiveDecks } = this.props
     getDecks()
-      .then( decks => dispatch(receiveDecks(decks)) )
+      .then( decks => receiveDecks(decks) )
       .then(() => this.setState({ready: true}))
   }
 
@@ -116,4 +116,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
+  { receiveDecks }
 )(DeckList)

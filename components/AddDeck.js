@@ -1,10 +1,11 @@
 import React from 'react'
-import { Keyboard, StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { Keyboard, StyleSheet, Text, KeyboardAvoidingView, TextInput, Button } from 'react-native'
 import { white, black, green } from '../utils/colors'
 import { connect } from 'react-redux'
 import { saveDeckTitle } from '../utils/api'
 import { modifyDeck } from '../actions'
 import TextInputWithLabel from './TextInputWithLabel'
+import { NavigationActions } from 'react-navigation'
 
 class AddDeck extends React.Component {
   static navigationOptions = () => {
@@ -18,7 +19,7 @@ class AddDeck extends React.Component {
   }
 
   _onPress = () => {
-    const { deckTitles, navigation, dispatch } = this.props
+    const { deckTitles, navigation, modifyDeck } = this.props
     const { title } = this.state
     if (title === "") {
       Keyboard.dismiss()
@@ -28,10 +29,20 @@ class AddDeck extends React.Component {
       alert("A deck with this title already exists")
     } else {
       saveDeckTitle(title)
-        .then( deck => dispatch(modifyDeck(title, deck)))
+        .then( deck => modifyDeck(title, deck))
         .then( () => {
           this.setState({title: ""})
-          navigation.navigate("DeckList")
+
+          // Simulate navigation as if new deck submission happened from Home
+          const resetAction = NavigationActions.reset({
+            index: 1,
+            actions: [
+              NavigationActions.navigate({ routeName: 'Home'}),
+              NavigationActions.navigate({ routeName: 'DeckDetail', params: { title }})
+            ]
+          })
+          navigation.dispatch(resetAction)
+
           Keyboard.dismiss()
         })
     }
@@ -39,7 +50,7 @@ class AddDeck extends React.Component {
 
   render() {
     return (
-      <View style={styles.form}>
+      <KeyboardAvoidingView style={styles.form} behavior="padding">
         <TextInputWithLabel
           labelText="What is the title of your new deck?"
           value={this.state.title}
@@ -51,7 +62,7 @@ class AddDeck extends React.Component {
           color={green}
           accessibilityLabel="Create a new deck of flash cards"
         />
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -73,4 +84,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
+  { modifyDeck }
 )(AddDeck)
